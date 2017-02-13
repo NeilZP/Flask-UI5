@@ -1,7 +1,10 @@
-from flask import Flask
+from flask import Flask,render_template,jsonify
 app= Flask(__name__)
-@app.route('/')
-def hello():
+# @app.route('/')
+@app.route('/hello/')  
+@app.route('/hello/<name>')  
+def hello(name=None):
+	# Test1 Begin
     # response = "<html>\n"
     # response += "<title>Flask Test</title>\n"
     # response += "<body>\n"
@@ -9,6 +12,12 @@ def hello():
     # response += "</body>\n"
     # response += "</html>\n"
     # return response
-    
+    # Test1 End
+    # return render_template("hello.html")   #Test 2
+    if name == None:  
+        name = "Neilzp_20170213"  
+    templateDate = {'name' : name};  
+    return render_template("hello.html", **templateDate)
+
 if __name__ == '__main__':  
-    app.run(host="127.0.0.1",port=8080, debug=True)
+
